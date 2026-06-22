@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Cyber Security portfolio showcasing skills in ethical hacking, VAPT, network security, and full-stack development." />
+<title>Susobhida Nagaraj | Cyber Security Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1117;
+    --surface2: #141b24;
+    --border: #1e2d3d;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --danger: #f43f5e;
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── SCAN LINE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,229,255,0.015) 2px, rgba(0,229,255,0.015) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1rem, 5vw, 4rem);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-logo span { color: var(--muted); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 8vw, 6rem) 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
+    bottom: 0; left: 10%;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; max-width: 780px; }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: var(--sans);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-name .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .cursor {
+    display: inline-block;
+    width: 2px; height: 1.1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 24px rgba(0,229,255,0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .stat { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ─── TERMINAL CARD ─── */
+  .terminal {
+    position: absolute;
+    right: clamp(1rem, 5vw, 5rem);
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(400px, 90vw);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,255,0.05);
+    display: none;
+  }
+
+  @media (min-width: 1100px) { .terminal { display: block; } }
+
+  .terminal-bar {
+    background: var(--surface2);
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #f43f5e; }
+  .dot-y { background: #f59e0b; }
+  .dot-g { background: #10b981; }
+
+  .terminal-title { margin-left: auto; color: var(--muted); font-size: 0.7rem; }
+
+  .terminal-body { padding: 1.25rem; line-height: 2; }
+
+  .t-prompt { color: var(--accent); }
+  .t-cmd { color: var(--text); }
+  .t-out { color: var(--muted); }
+  .t-green { color: var(--accent3); }
+  .t-purple { color: #a78bfa; }
+  .t-red { color: var(--danger); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 8vw, 6rem); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--sans);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--surface); }
+
+  .skill-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .skill-card:hover { border-color: rgba(0,229,255,0.3); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+  .skill-card:hover::before { opacity: 1; }
+
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+  .skill-card-title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .tag-cyber { border-color: rgba(244,63,94,0.3); color: #fda4af; background: rgba(244,63,94,0.05); }
+  .tag-dev { border-color: rgba(0,229,255,0.3); color: #a5f3fc; background: rgba(0,229,255,0.05); }
+  .tag-lang { border-color: rgba(124,58,237,0.3); color: #c4b5fd; background: rgba(124,58,237,0.05); }
+  .tag-tool { border-color: rgba(16,185,129,0.3); color: #6ee7b7; background: rgba(16,185,129,0.05); }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-3px); }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-family: var(--sans);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .project-badge {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--surface); }
+
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+  }
+
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.375rem;
+    top: 0.3rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(0,229,255,0.5);
+  }
+
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-company {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li { position: relative; padding-left: 1.25rem; margin-bottom: 0.4rem; }
+  .timeline-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ─── CERTS ─── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .cert-card:hover { border-color: rgba(0,229,255,0.25); }
+
+  .cert-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .cert-name {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .cert-issuer { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--bg); text-align: center; }
+
+  .contact-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 16px rgba(0,229,255,0.15);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem clamp(1.5rem, 8vw, 6rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent3);
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent3);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+    50% { box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+  }
+
+  /* ─── AVAILABLE BADGE ─── */
+  .available-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: var(--accent3);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(8,12,16,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 0.9rem clamp(1rem, 5vw, 4rem); }
+    #hero { padding-top: 6rem; }
+  }
+
+  /* ─── SCROLL FADE ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">root<span>@</span>portfolio<span>:~$</span></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-content">
+    <div class="available-badge">
+      <span class="status-dot"></span>
+      Open to Internship Opportunities
+    </div>
+
+    <div class="hero-eyebrow">Cyber Security Student · Final Year</div>
+
+    <h1 class="hero-name">
+      Susobhida<br>
+      <span class="highlight">Nagaraj</span>
+    </h1>
+
+    <p class="hero-title">
+      Ethical Hacker · VAPT Analyst · Full Stack Dev<span class="cursor"></span>
+    </p>
+
+    <p class="hero-desc">
+      Final-year Cyber Security student passionate about securing systems, uncovering vulnerabilities, and building secure web applications. Combining offensive security knowledge with full-stack development skills to build safer digital products.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">
+        ⚡ Hire Me
+      </a>
+      <a href="#projects" class="btn-secondary">
+        🔐 View Projects
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">Certificates</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Technologies</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Internship</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="dot dot-r"></span>
+      <span class="dot dot-y"></span>
+      <span class="dot dot-g"></span>
+      <span class="terminal-title">susobhida@kali:~</span>
+    </div>
+    <div class="terminal-body">
+      <div><span class="t-prompt">┌──(susobhida㉿kali)-[~]</span></div>
+      <div><span class="t-prompt">└─$</span> <span class="t-cmd">whoami</span></div>
+      <div class="t-out">Susobhida Nagaraj</div>
+      <div><span class="t-prompt">└─$</span> <span class="t-cmd">cat skills.txt</span></div>
+      <div class="t-green">▸ Ethical Hacking &amp; VAPT</div>
+      <div class="t-green">▸ Malware Analysis</div>
+      <div class="t-green">▸ Network Security / IDS/IPS</div>
+      <div class="t-green">▸ MERN Stack Development</div>
+      <div class="t-green">▸ Cyber Forensics</div>
+      <div><span class="t-prompt">└─$</span> <span class="t-cmd">nmap --status</span></div>
+      <div class="t-purple">PORT     STATE  SERVICE</div>
+      <div class="t-out">443/tcp  open   https</div>
+      <div class="t-out">22/tcp   open   ssh</div>
+      <div><span class="t-prompt">└─$</span> <span class="t-cmd">echo $STATUS</span></div>
+      <div class="t-green">🟢 Available for Internship</div>
+      <div><span class="t-prompt">└─$</span> <span class="cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Arsenal</div>
+  <h2 class="section-title">Skills & Expertise</h2>
+  <p class="section-sub">A broad foundation across offensive security, network defense, and full-stack development.</p>
+
+  <div class="skill-categories fade-in">
+    <div class="skill-card">
+      <div class="skill-icon">🛡️</div>
+      <div class="skill-card-title">Offensive Security</div>
+      <div class="skill-tags">
+        <span class="tag tag-cyber">Ethical Hacking</span>
+        <span class="tag tag-cyber">VAPT</span>
+        <span class="tag tag-cyber">Kali Linux</span>
+        <span class="tag tag-cyber">Malware Analysis</span>
+        <span class="tag tag-cyber">Cyber Forensics</span>
+        <span class="tag tag-cyber">IDS/IPS</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-card-title">Web Development</div>
+      <div class="skill-tags">
+        <span class="tag tag-dev">MERN Stack</span>
+        <span class="tag tag-dev">React.js</span>
+        <span class="tag tag-dev">Node.js</span>
+        <span class="tag tag-dev">Express.js</span>
+        <span class="tag tag-dev">MongoDB</span>
+        <span class="tag tag-dev">HTML5</span>
+        <span class="tag tag-dev">CSS3</span>
+        <span class="tag tag-dev">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <div class="skill-card-title">Programming</div>
+      <div class="skill-tags">
+        <span class="tag tag-lang">Python</span>
+        <span class="tag tag-lang">C</span>
+        <span class="tag tag-lang">Java</span>
+        <span class="tag tag-lang">DSA</span>
+        <span class="tag tag-lang">OOP</span>
+        <span class="tag tag-lang">DBMS</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🔗</div>
+      <div class="skill-card-title">Networking & Systems</div>
+      <div class="skill-tags">
+        <span class="tag tag-tool">Networking</span>
+        <span class="tag tag-tool">Network Security</span>
+        <span class="tag tag-tool">Operating Systems</span>
+        <span class="tag tag-tool">MySQL</span>
+        <span class="tag tag-tool">Hibernate</span>
+        <span class="tag tag-tool">Cloud Computing</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-card-title">AI & Emerging Tech</div>
+      <div class="skill-tags">
+        <span class="tag tag-lang">Prompt Engineering</span>
+        <span class="tag tag-lang">OpenAI GPT</span>
+        <span class="tag tag-lang">NLP</span>
+        <span class="tag tag-lang">Deep Learning</span>
+        <span class="tag tag-lang">Data Science</span>
+        <span class="tag tag-lang">RPA</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-card-title">Cloud & Security Ops</div>
+      <div class="skill-tags">
+        <span class="tag tag-tool">IAM</span>
+        <span class="tag tag-tool">Cloud Security</span>
+        <span class="tag tag-tool">Cyber Audits</span>
+        <span class="tag tag-tool">Info Security</span>
+        <span class="tag tag-tool">Design Thinking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Work</div>
+  <h2 class="section-title">Projects</h2>
+  <p class="section-sub">Hands-on builds that solve real security and environmental challenges.</p>
+
+  <div class="projects-grid fade-in">
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_01</div>
+      <h3 class="project-title">🚨 IPS System Design</h3>
+      <p class="project-desc">
+        Designed and implemented an Intrusion Prevention System (IPS) capable of detecting and blocking suspicious network activity in real time. Built with rule-based traffic analysis and packet inspection to protect against common attack vectors.
+      </p>
+      <div class="project-stack">
+        <span class="project-badge">Python</span>
+        <span class="project-badge">Network Security</span>
+        <span class="project-badge">IDS/IPS</span>
+        <span class="project-badge">Kali Linux</span>
+        <span class="project-badge">Packet Analysis</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT_02</div>
+      <h3 class="project-title">🌍 TerraTrack</h3>
+      <p class="project-desc">
+        A government-oriented platform to detect and prevent unauthorized sand and mineral mining. Integrates real-time location monitoring, alert systems, and reporting dashboards to help regulatory bodies safeguard natural resources.
+      </p>
+      <div class="project-stack">
+        <span class="project-badge">MERN Stack</span>
+        <span class="project-badge">Geolocation</span>
+        <span class="project-badge">MongoDB</span>
+        <span class="project-badge">Node.js</span>
+        <span class="project-badge">React</span>
+        <span class="project-badge">GovTech</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">INTERNSHIP_PROJECT</div>
+      <h3 class="project-title">🛒 Intelligent Shopping System</h3>
+      <p class="project-desc">
+        Contributed to a full-stack e-commerce platform during a 15-day internship. Built features including product management, an AI-powered recommendation engine, shopping cart functionality, and real-time order tracking.
+      </p>
+      <div class="project-stack">
+        <span class="project-badge">Full Stack</span>
+        <span class="project-badge">E-Commerce</span>
+        <span class="project-badge">Recommendation System</span>
+        <span class="project-badge">Frontend</span>
+        <span class="project-badge">Backend</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-sub">Practical industry exposure through internship and academic work.</p>
+
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">SUMMER 2025 · 15 DAYS</div>
+      <div class="timeline-title">Full Stack Web Development Intern</div>
+      <div class="timeline-company">Industry Internship — Full Stack Development Program</div>
+      <ul class="timeline-bullets timeline-desc">
+        <li>Gained practical experience in both frontend and backend web technologies over an intensive 15-day program.</li>
+        <li>Contributed to building an Intelligent Shopping System — a full-featured e-commerce platform.</li>
+        <li>Implemented product management modules, a recommendation system, shopping cart, and order tracking.</li>
+        <li>Worked across the entire development lifecycle, from UI design to API integration and database management.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">ONGOING · FINAL YEAR</div>
+      <div class="timeline-title">B.Tech — Cyber Security</div>
+      <div class="timeline-company">Final Year Undergraduate Student</div>
+      <ul class="timeline-bullets timeline-desc">
+        <li>Specializing in ethical hacking, VAPT, malware analysis, and network security.</li>
+        <li>Completed 30+ online certifications across security, AI, cloud, and web development domains.</li>
+        <li>Built projects in IPS system design and government-level resource monitoring (TerraTrack).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Certifications</h2>
+  <p class="section-sub">30+ verified credentials across cybersecurity, AI, cloud, and web technologies.</p>
+
+  <div class="certs-grid fade-in">
+
+    <!-- INFOSYS SPRINGBOARD -->
+    <div class="cert-card"><div class="cert-icon">🛡️</div><div><div class="cert-name">Cyber Security Foundation</div><div class="cert-issuer">Infosys Springboard</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">Front End Web Developer</div><div class="cert-issuer">Infosys Springboard</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🤖</div><div><div class="cert-name">Natural Language Processing Foundation</div><div class="cert-issuer">Infosys Springboard</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔒</div><div><div class="cert-name">Fundamentals of Information Security</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌩️</div><div><div class="cert-name">Introduction to Cloud Computing</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌩️</div><div><div class="cert-name">Essentials & Fundamentals of Cloud Computing</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔑</div><div><div class="cert-name">Identity & Access Management (IAM)</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🛡️</div><div><div class="cert-name">Cyber Security Audits</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔐</div><div><div class="cert-name">Introduction to Cyber Security</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">Network Security Essentials</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">Networking & Web Technology / Fundamentals</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🐍</div><div><div class="cert-name">Online Python Training Course</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🐍</div><div><div class="cert-name">Programming Fundamentals Using Python (Part 1 & 2)</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🐍</div><div><div class="cert-name">Basics of Python</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🤖</div><div><div class="cert-name">Intro to OpenAI ChatGPT Models & GPT-4</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">✏️</div><div><div class="cert-name">Prompt Engineering</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🤖</div><div><div class="cert-name">OpenAI GPT-3</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">📊</div><div><div class="cert-name">Intro to Data Science</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🧠</div><div><div class="cert-name">Deep Learning for Developers</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🗣️</div><div><div class="cert-name">Natural Language Processing for Developers</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🗣️</div><div><div class="cert-name">Introduction to NLP</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">⚙️</div><div><div class="cert-name">Software Engineering & AI-First Software Engineering</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🤖</div><div><div class="cert-name">Introduction to Robotic Process Automation</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">JavaScript & CSS3</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">HTML5 — The Language</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">💾</div><div><div class="cert-name">MySQL DB Development: Design Fundamentals</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">☕</div><div><div class="cert-name">Hibernate Frameworks — Basics</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">The MERN Stack & FSD</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">💡</div><div><div class="cert-name">Design Thinking & Next Gen Technologies</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🎤</div><div><div class="cert-name">SpeakUp</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">⚙️</div><div><div class="cert-name">Process Management</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🗃️</div><div><div class="cert-name">Data Structures in C</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">☕</div><div><div class="cert-name">Java Programming</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">Basics of Computer Networking</div><div class="cert-issuer">Online</div></div></div>
+    <div class="cert-card"><div class="cert-icon">📖</div><div><div class="cert-name">NCERT Grade 6 English</div><div class="cert-issuer">Online</div></div></div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div class="section-label" style="text-align:center;">Connect</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-sub" style="margin:0 auto 0 auto; text-align:center;">
+      I'm actively looking for internship opportunities in Cyber Security, VAPT, or Full Stack Development. Let's connect and build something secure together.
+    </p>
+
+    <div class="contact-links fade-in">
+      <a href="mailto:susobhidanagaraj@gmail.com" class="contact-link">
+        📧 susobhidanagaraj@gmail.com
+      </a>
+      <a href="tel:+918056380595" class="contact-link">
+        📱 +91 80563 80595
+      </a>
+      <a href="https://www.linkedin.com/in/susobhida" target="_blank" rel="noopener" class="contact-link">
+        🔗 linkedin.com/in/susobhida
+      </a>
+      <a href="https://github.com/Susobhida" target="_blank" rel="noopener" class="contact-link">
+        🐙 github.com/Susobhida
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">© 2026 Susobhida Nagaraj · Cyber Security Portfolio</div>
+  <div class="footer-status">
+    <span class="status-dot"></span>
+    Available for Internship
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Typewriter effect
+  const titles = [
+    'Ethical Hacker · VAPT Analyst · Full Stack Dev',
+    'Cyber Forensics Specialist',
+    'Network Security Enthusiast',
+    'Malware Analyst · IDS/IPS Expert',
+    'MERN Stack Developer'
+  ];
+  let ti = 0, ci = 0, deleting = false;
+  const titleEl = document.querySelector('.hero-title');
+
+  function type() {
+    const cur = titles[ti];
+    if (!deleting) {
+      ci++;
+      titleEl.innerHTML = cur.slice(0, ci) + '<span class="cursor"></span>';
+      if (ci === cur.length) { deleting = true; setTimeout(type, 2000); return; }
+    } else {
+      ci--;
+      titleEl.innerHTML = cur.slice(0, ci) + '<span class="cursor"></span>';
+      if (ci === 0) { deleting = false; ti = (ti + 1) % titles.length; }
+    }
+    setTimeout(type, deleting ? 40 : 65);
+  }
+  type();
+</script>
+</body>
+</html>
